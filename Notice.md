@@ -255,7 +255,7 @@ Une fois les conteneurs déployés, vous devez pouvoir accéder au site web depu
 ### C. Test HTTP et Capture
 
 1.  Ouvrez **Wireshark** sur votre VM Client et lancez une capture sur l'interface réseau connectée au réseau du lab.
-2.  Ouvrez votre navigateur et allez sur `http://web.simplon.local`.
+2.  Ouvrez votre navigateur et allez sur `http://web.simplon.local`
 3.  Observez le trafic en clair dans Wireshark (Filtre : `http`).
 
 ### D. Mise en place du SSL
