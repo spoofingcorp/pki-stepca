@@ -245,7 +245,7 @@ echo "Apache server setup completed."
 ### A. Informations sur l'infrastructure
 
 *   **PKI** : L'autorité de certification exécute Smallstep. Elle est configurée pour émettre des certificats SSL (ACME). Le certificat racine est dans `/etc/step-ca/certs`.
-*   **WEB** : Exécute Apache2, configuré pour répondre sur `[http://web.simplon.local](http://web.simplon.local)`.
+*   **WEB** : Exécute Apache2, configuré pour répondre sur `http://web.simplon.local`.
 
 ### B. Configuration de la VM Client (hôte)
 
@@ -255,7 +255,7 @@ Une fois les conteneurs déployés, vous devez pouvoir accéder au site web depu
 ### C. Test HTTP et Capture
 
 1.  Ouvrez **Wireshark** sur votre VM Client et lancez une capture sur l'interface réseau connectée au réseau du lab.
-2.  Ouvrez votre navigateur et allez sur `[http://web.simplon.local](http://web.simplon.local)`.
+2.  Ouvrez votre navigateur et allez sur `http://web.simplon.local`.
 3.  Observez le trafic en clair dans Wireshark (Filtre : `http`).
 
 ### D. Mise en place du SSL
@@ -306,13 +306,13 @@ certbot --apache --server https://pki.simplon.local:8443/acme/acme/directory
 ### 3. Test HTTPS et Validation Client
 
 1.  Lancez une nouvelle capture Wireshark.
-2.  Allez sur `[https://web.simplon.local/](https://web.simplon.local/)`.
+2.  Allez sur `https://web.simplon.local/`.
 3.  **Analyse** : Le trafic est désormais chiffré. Quel protocole est utilisé ? (Regardez dans Wireshark, vous devriez voir du `TLS 1.3`).
 Normalement vous devez voire du TLS 1.3. Si ce n’est pas le cas, votre navigateur n’est pas a jour ou est mal configuré
 Dans Chrome, taper > chrome://flags/#tls13-variant
 4.  **Alerte de sécurité du navigateur** : Votre navigateur affichera un avertissement de sécurité. C'est normal, votre VM Client ne connaît pas encore la PKI interne !
 5.  **Résolution côté client** :
-    *   Depuis votre VM Client, rendez-vous sur l'URL : `[https://pki.simplon.local:8443/roots.pem](https://pki.simplon.local:8443/roots.pem)`
+    *   Depuis votre VM Client, rendez-vous sur l'URL : `https://pki.simplon.local:8443/roots.pem`
     *   Le certificat racine se télécharge.
     *   Importez-le dans le magasin de certificats de votre système d'exploitation ou directement dans les paramètres de votre navigateur (Autorités de certification de confiance).
     *   Rechargez la page web : le cadenas vert doit s'afficher.
